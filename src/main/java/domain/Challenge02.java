@@ -13,17 +13,18 @@ public class Challenge02 {
     public int exec(int minutesUsed) throws Exception {
         Locale.setDefault(Locale.US);
         int totalPrice;
-        int basePriceForUpTo100Minutes = 50;
+        int minMinutes = 100;
+        int basePrice = 50;
 
         if(minutesUsed <= 0){
             throw new Exception("Must not be negative minutes!");
         }
-        if(minutesUsed < basePriceForUpTo100Minutes) {
-            totalPrice = basePriceForUpTo100Minutes;
+        if(minutesUsed < minMinutes) {
+            totalPrice = basePrice;
         } else {
-            int minutesExceeded = Math.max(0, minutesUsed - basePriceForUpTo100Minutes);
+            int minutesExceeded = Math.max(0, minutesUsed - minMinutes);
             int taxes = calculateTaxes(minutesExceeded);
-            totalPrice = basePriceForUpTo100Minutes + taxes;
+            totalPrice = basePrice + taxes;
         }
         System.out.println(totalPrice);
         return totalPrice;

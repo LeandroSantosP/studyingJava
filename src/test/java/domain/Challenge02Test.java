@@ -14,7 +14,7 @@ class Challenge02Test {
     @Test
     void itMustBePossibleToCalculatorTheTotalWithoutThe50MinutesLimit() throws Exception {
         Challenge02 challenge02 = new Challenge02();
-        assertEquals(challenge02.exec(60), 70);
+        assertEquals(challenge02.exec(110), 70);
     }
 
 
