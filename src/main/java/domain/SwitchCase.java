@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Arrays;
+
 public class SwitchCase {
 
     String exec(int dayNumber) throws Exception {
@@ -13,6 +15,8 @@ public class SwitchCase {
             case 7 -> "sabado";
             default -> throw new Exception();
         };
+
+
         return String.format("DIA DA SEMANA: %s", day);
     }
 

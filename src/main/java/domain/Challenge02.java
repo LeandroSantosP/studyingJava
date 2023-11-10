@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Arrays;
 import java.util.Locale;
 import java.lang.Math;
 import java.util.Map;
@@ -14,9 +15,10 @@ public class Challenge02 {
         int minMinutes = 100;
         double basePrice = 50;
 
-        for(var i = 0; i < 10; i++){
-            System.out.println("TESTING FOR: " + i);
-        }
+        String name = "John Dow Test";
+        var res = name.split(" ", 2);
+        System.out.println(Arrays.toString(res));
+
         if(minutesUsed <= 0){
             throw new Exception("Must not be negative minutes!");
         }
