@@ -1,9 +1,6 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 public class ProjectOne {
 
@@ -17,14 +14,28 @@ public class ProjectOne {
         List<Integer> numbers = new ArrayList<Integer>();
         numbers.add(1);
         numbers.add(2);
-        numbers.add(1212);
-        this.max(numbers);
+        numbers.add(10);
+        this.maxIterator(numbers);
+        this.maxEnhancedFor(numbers);
     }
 
-    private void max(List<Integer> numbers) {
+    private void maxEnhancedFor(List<Integer> numbers) {
         int result = 0;
         for (Integer number : numbers) {
             if (number > result) {
+                result = number;
+            }
+        }
+        System.out.println(result);
+    }
+
+    private void maxIterator(List<Integer> numbers) {
+        Iterator<Integer> iterator = numbers.iterator();
+        int result = 0;
+        while (iterator.hasNext()){
+            Integer number = iterator.next();
+
+            if(number > result){
                 result = number;
             }
         }
