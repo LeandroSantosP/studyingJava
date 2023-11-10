@@ -3,9 +3,6 @@ package domain;
 import java.util.*;
 
 public class ProjectOne {
-
-
-
     public ProjectOne(UUID id, String name, Double price) {
         this.id = Objects.requireNonNullElseGet(id, UUID::randomUUID);
         this.name = name;
