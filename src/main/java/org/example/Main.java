@@ -11,8 +11,8 @@ public class Main {
 //      IO io = new IO();
 //      Math math = new Math();
 //      math.calc();
-//         MathOperators mathOperators = new MathOperators();
-//         mathOperators.calc();
+//      MathOperators mathOperators = new MathOperators();
+//      mathOperators.calc();
 
         Challenge02 challenge02 = new Challenge02();
         challenge02.exec(100);
