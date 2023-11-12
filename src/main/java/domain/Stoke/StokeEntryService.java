@@ -1,9 +1,12 @@
 package domain.Stoke;
 
-public class StokeEntryIncrease {
+public class StokeEntryService {
     private final StokeEntryRepository stokeEntryRepository;
 
-    public StokeEntryIncrease(StokeEntryRepository stokeEntryRepository) {
+    public record StokeEntryIncreaseInput(int productId, int quantity) {
+    }
+
+    public StokeEntryService(StokeEntryRepository stokeEntryRepository) {
         this.stokeEntryRepository = stokeEntryRepository;
     }
 
@@ -17,8 +20,4 @@ public class StokeEntryIncrease {
         StokeEntry stokeEntry = new StokeEntry(input.productId(), input.quantity(), "out");
         this.stokeEntryRepository.persist(stokeEntry);
     }
-
-
-}
-record StokeEntryIncreaseInput(int productId, int quantity) {
 }
