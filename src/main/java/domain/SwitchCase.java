@@ -1,7 +1,5 @@
 package domain;
 
-import java.util.Arrays;
-
 public class SwitchCase {
 
     String exec(int dayNumber) throws Exception {

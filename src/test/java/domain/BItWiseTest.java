@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BItWiseTest {
-
-
     @Test
     void test(){
         BItWise bItWise = new BItWise();

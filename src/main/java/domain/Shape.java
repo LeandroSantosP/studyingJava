@@ -1,10 +1,13 @@
 package domain;
+
 import java.lang.Math;
-public class Shape {
+
+public abstract class Shape {
     public String name;
     private final double side1;
     private final double side2;
     private final double side3;
+
 
     Shape(String name, double side1, double side2, double side3) {
         this.name = name;
@@ -16,5 +19,19 @@ public class Shape {
     double GetArea() {
         double p = (this.side1 + this.side2 + side3) / 2.0;
         return Math.sqrt(p * (p - this.side1) * (p - this.side2) * (p - this.side3));
+    }
+}
+
+
+class Circle extends Shape {
+    Circle(double side1, double side2, double side3) {
+        super("Circle", side1, side2, side3);
+    }
+}
+
+
+class Square extends Shape {
+    Square(double side1, double side2, double side3) {
+        super("Square", side1, side2, side3);
     }
 }
