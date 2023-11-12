@@ -17,8 +17,11 @@ class Operation {
 public class StokeEntry {
     private final int productId;
     private final int quantity;
-    public final Operation operation;
+    private final Operation operation;
     public StokeEntry(int productId, int quantity, String operation) {
+        if(quantity < 0) {
+            throw new IllegalArgumentException("Invalid Quantity must be a greater number than 0");
+        }
         this.productId = productId;
         this.quantity = quantity;
         this.operation = new Operation(operation);
@@ -28,5 +31,9 @@ public class StokeEntry {
     }
     public int getProductId() {
         return productId;
+    }
+
+    public String getOperation(){
+        return this.operation.getOperation();
     }
 }

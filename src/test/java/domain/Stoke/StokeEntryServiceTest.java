@@ -21,7 +21,7 @@ class StokeEntryServiceTest {
         StokeEntryService StokeEntryService = this.StokeEntryService;
         var StokeEntryIncreaseInput = new StokeEntryService.StokeEntryIncreaseInput(1, 10);
         StokeEntryService.increase(StokeEntryIncreaseInput);
-        var operation = stokeEntryRepositoryMemory.getStokeEntryByProductId(1).operation.getOperation();
+        var operation = stokeEntryRepositoryMemory.getStokeEntryByProductId(1).getOperation();
         var productId = stokeEntryRepositoryMemory.getStokeEntryByProductId(1).getProductId();
         var quantity = stokeEntryRepositoryMemory.getStokeEntryByProductId(1).getQuantity();
         assertEquals(productId, 1);
@@ -37,7 +37,7 @@ class StokeEntryServiceTest {
         StokeEntryService StokeEntryService = this.StokeEntryService;
         var StokeEntryIncreaseInput = new StokeEntryService.StokeEntryIncreaseInput(1, 10);
         StokeEntryService.decrease(StokeEntryIncreaseInput);
-        var operation = stokeEntryRepositoryMemory.getStokeEntryByProductId(1).operation.getOperation();
+        var operation = stokeEntryRepositoryMemory.getStokeEntryByProductId(1).getOperation();
         var productId = stokeEntryRepositoryMemory.getStokeEntryByProductId(1).getProductId();
         var quantity = stokeEntryRepositoryMemory.getStokeEntryByProductId(1).getQuantity();
         assertEquals(productId, 1);
@@ -45,4 +45,19 @@ class StokeEntryServiceTest {
         assertEquals(operation, "out");
         assertNotEquals(operation, "in");
     }
+
+
+    @Test
+    void shouldBeAbleCalculateStokeEntry() throws NoSuchStokeEntryException {
+        StokeEntryRepository stokeEntryRepositoryMemory = this.stokeEntryRepositoryMemory;
+        StokeEntryService StokeEntryService = this.StokeEntryService;
+        var StokeEntryIncreaseInput = new StokeEntryService.StokeEntryIncreaseInput(1, 10);
+        var StokeEntryDecreaseInput = new StokeEntryService.StokeEntryIncreaseInput(1, 7);
+        StokeEntryService.increase(StokeEntryIncreaseInput);
+        StokeEntryService.decrease(StokeEntryDecreaseInput);
+        var output = StokeEntryService.calculateStoke(1);
+        assertEquals(output.getStokeQuantity(), 3);
+        assertTrue(output.isAvailable());
+    }
+
 }

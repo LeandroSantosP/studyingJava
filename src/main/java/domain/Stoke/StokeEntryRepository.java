@@ -1,6 +1,10 @@
 package domain.Stoke;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public interface StokeEntryRepository {
-    public StokeEntry getStokeEntryByProductId(int id) throws NoSuchStokeEntryException;
+    StokeEntry getStokeEntryByProductId(int id) throws NoSuchStokeEntryException;
+    List<StokeEntry> getAllStokeEntriesByProductId(int productId);
     void persist(StokeEntry StokeEntry);
 }
