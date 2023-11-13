@@ -9,17 +9,17 @@ import java.util.stream.Collectors;
 
 public class StokeEntryRepositoryMemory implements StokeEntryRepository {
     private final Map<UUID, StokeEntry> StokeEntries;
-    static private StokeEntryRepositoryMemory instance;
+    static private StokeEntryRepositoryMemory instance = null;
 
-    private StokeEntryRepositoryMemory() {
-        this.StokeEntries = new HashMap<>();
-    }
 
     static public StokeEntryRepositoryMemory getInstance() {
         if (StokeEntryRepositoryMemory.instance == null) {
             StokeEntryRepositoryMemory.instance = new StokeEntryRepositoryMemory();
         }
         return StokeEntryRepositoryMemory.instance;
+    }
+    private StokeEntryRepositoryMemory() {
+        this.StokeEntries = new HashMap<>();
     }
 
     @Override

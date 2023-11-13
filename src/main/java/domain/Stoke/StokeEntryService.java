@@ -19,27 +19,17 @@ public class StokeEntryService {
 
     public StokeEntryCalculateOutput calculateStoke(int productId) {
         List<StokeEntry> stokeEntries = this.stokeEntryRepository.getAllStokeEntriesByProductId(productId);
-        int total = 0;
-        for(StokeEntry stokeEntry : stokeEntries){
-            if(Objects.equals(stokeEntry.getOperation(), "in")){
-                total += stokeEntry.getQuantity();
-            }
-            if(Objects.equals(stokeEntry.getOperation(), "out")) {
-                total -= stokeEntry.getQuantity();
-            }
-        }
-        boolean isAvailable = total != 0;
-        return new StokeEntryCalculateOutput(total, isAvailable);
+        StokeCalculator.StokeCalculatorOutput stokeCalculator = StokeCalculator.execute(stokeEntries);
+        return new StokeEntryCalculateOutput(stokeCalculator.total(), stokeCalculator.isAvailable());
     }
 
     public void increase(StokeEntryIncreaseInput input) {
-        // possible business rule: Check if product exists and if stoke is greater than 0;
         StokeEntry stokeEntry = new StokeEntry(input.productId(), input.quantity(), "in");
         this.stokeEntryRepository.persist(stokeEntry);
     }
 
-
     public void decrease(StokeEntryDecreaseInput input) {
+        // possible business rule: Check if product exists and if stoke is greater than 0;
         StokeEntry stokeEntry = new StokeEntry(input.productId(), input.quantity(), "out");
         this.stokeEntryRepository.persist(stokeEntry);
     }
