@@ -11,7 +11,7 @@ class StokeEntryServiceTest {
 
     @BeforeEach
     void setUp() {
-        stokeEntryRepositoryMemory = new StokeEntryRepositoryMemory();
+        stokeEntryRepositoryMemory = StokeEntryRepositoryMemory.getInstance();
         StokeEntryService = new StokeEntryService(stokeEntryRepositoryMemory);
     }
 
@@ -35,8 +35,8 @@ class StokeEntryServiceTest {
     void shouldBePossibleDecreaseAnProductOnStoke() throws NoSuchStokeEntryException {
         StokeEntryRepository stokeEntryRepositoryMemory = this.stokeEntryRepositoryMemory;
         StokeEntryService StokeEntryService = this.StokeEntryService;
-        var StokeEntryIncreaseInput = new StokeEntryService.StokeEntryIncreaseInput(1, 10);
-        StokeEntryService.decrease(StokeEntryIncreaseInput);
+        var StokeEntryDecreaseInput = new StokeEntryService.StokeEntryDecreaseInput(1, 10);
+        StokeEntryService.decrease(StokeEntryDecreaseInput);
         var operation = stokeEntryRepositoryMemory.getStokeEntryByProductId(1).getOperation();
         var productId = stokeEntryRepositoryMemory.getStokeEntryByProductId(1).getProductId();
         var quantity = stokeEntryRepositoryMemory.getStokeEntryByProductId(1).getQuantity();
@@ -49,10 +49,9 @@ class StokeEntryServiceTest {
 
     @Test
     void shouldBeAbleCalculateStokeEntry() throws NoSuchStokeEntryException {
-        StokeEntryRepository stokeEntryRepositoryMemory = this.stokeEntryRepositoryMemory;
         StokeEntryService StokeEntryService = this.StokeEntryService;
         var StokeEntryIncreaseInput = new StokeEntryService.StokeEntryIncreaseInput(1, 10);
-        var StokeEntryDecreaseInput = new StokeEntryService.StokeEntryIncreaseInput(1, 7);
+        var StokeEntryDecreaseInput = new StokeEntryService.StokeEntryDecreaseInput(1, 7);
         StokeEntryService.increase(StokeEntryIncreaseInput);
         StokeEntryService.decrease(StokeEntryDecreaseInput);
         var output = StokeEntryService.calculateStoke(1);

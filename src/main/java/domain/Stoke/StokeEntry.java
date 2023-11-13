@@ -1,5 +1,7 @@
 package domain.Stoke;
 
+import java.util.UUID;
+
 class Operation {
   private final String value;
     public Operation(String value)  {
@@ -15,6 +17,7 @@ class Operation {
     }
 }
 public class StokeEntry {
+    private UUID id;
     private final int productId;
     private final int quantity;
     private final Operation operation;
@@ -22,6 +25,7 @@ public class StokeEntry {
         if(quantity < 0) {
             throw new IllegalArgumentException("Invalid Quantity must be a greater number than 0");
         }
+        this.id = UUID.randomUUID();
         this.productId = productId;
         this.quantity = quantity;
         this.operation = new Operation(operation);
@@ -31,6 +35,10 @@ public class StokeEntry {
     }
     public int getProductId() {
         return productId;
+    }
+
+    public UUID getId(){
+        return this.id;
     }
 
     public String getOperation(){
