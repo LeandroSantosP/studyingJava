@@ -11,7 +11,7 @@ class StokeEntryServiceTest {
 
     @BeforeEach
     void setUp() {
-        stokeEntryRepositoryMemory = StokeEntryRepositoryMemory.getInstance();
+        stokeEntryRepositoryMemory = new StokeEntryRepositoryMemory();
         StokeEntryService = new StokeEntryService(stokeEntryRepositoryMemory);
     }
 

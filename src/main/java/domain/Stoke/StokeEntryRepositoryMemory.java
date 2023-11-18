@@ -6,11 +6,9 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-
 public class StokeEntryRepositoryMemory implements StokeEntryRepository {
     private final Map<UUID, StokeEntry> StokeEntries;
     static private StokeEntryRepositoryMemory instance = null;
-
 
     static public StokeEntryRepositoryMemory getInstance() {
         if (StokeEntryRepositoryMemory.instance == null) {
@@ -18,7 +16,7 @@ public class StokeEntryRepositoryMemory implements StokeEntryRepository {
         }
         return StokeEntryRepositoryMemory.instance;
     }
-    private StokeEntryRepositoryMemory() {
+    public StokeEntryRepositoryMemory() {
         this.StokeEntries = new HashMap<>();
     }
 

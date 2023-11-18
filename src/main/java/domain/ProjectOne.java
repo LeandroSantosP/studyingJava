@@ -2,7 +2,7 @@ package domain;
 
 import java.util.*;
 
-public class ProjectOne {
+public record ProjectOne(UUID id, String name, Double price) {
     public ProjectOne(UUID id, String name, Double price) {
         this.id = Objects.requireNonNullElseGet(id, UUID::randomUUID);
         this.name = name;
@@ -16,6 +16,10 @@ public class ProjectOne {
         this.maxEnhancedFor(numbers);
     }
 
+    public String toString() {
+        return this.name;
+    }
+
     private void maxEnhancedFor(List<Integer> numbers) {
         int result = 0;
         for (Integer number : numbers) {
@@ -23,26 +27,17 @@ public class ProjectOne {
                 result = number;
             }
         }
-        System.out.println(result);
     }
 
     private void maxIterator(List<Integer> numbers) {
         Iterator<Integer> iterator = numbers.iterator();
         int result = 0;
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Integer number = iterator.next();
 
-            if(number > result){
+            if (number > result) {
                 result = number;
             }
         }
-        System.out.println(result);
-    }
-
-    private final UUID id;
-    public final String name;
-    public final Double price;
-    public UUID getId() {
-        return id;
     }
 }
