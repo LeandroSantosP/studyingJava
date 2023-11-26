@@ -1,12 +1,12 @@
 package domain;
 
-public class PaidCalculatorBRL extends PaidCalculator {
+public class PaidCalculatorBRL extends PaidCalculatorWithIof {
     @Override
     String getCurrency() {
         return "BRL";
     }
 
-    private double getTax() {
+    private double getIof() {
         return 0.06;
     }
 
@@ -16,8 +16,8 @@ public class PaidCalculatorBRL extends PaidCalculator {
     }
 
     @Override
-    double calculateSixPercentage(double amount) {
-        return amount * this.getTax();
+    double calculateIof(double amount) {
+        return amount * this.getIof();
     }
 
 }

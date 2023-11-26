@@ -1,7 +1,6 @@
 package domain;
 
-public class PaidCalculatorEUR extends PaidCalculatorWithIof {
-
+public class PaidCalculatorEURWithOutIof extends PaidCalculator {
     @Override
     String getCurrency() {
         return "EUR";
@@ -14,10 +13,5 @@ public class PaidCalculatorEUR extends PaidCalculatorWithIof {
     @Override
     double getPercentage() {
         return 5.10;
-    }
-
-    @Override
-    double calculateIof(double amount) {
-        return amount * this.getIof();
     }
 }

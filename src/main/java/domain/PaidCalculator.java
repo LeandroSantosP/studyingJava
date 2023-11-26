@@ -2,14 +2,14 @@ package domain;
 
 public abstract class PaidCalculator {
     abstract String getCurrency();
-
     abstract double getPercentage();
-
-    abstract double calculateSixPercentage(double amount);
 
     double calculateTotal(double amountToBought) {
         double totalWithoutTax = amountToBought * this.getPercentage();
-        var taxes = this.calculateSixPercentage(totalWithoutTax);
+        double taxes = 0;
+        if(this instanceof PaidCalculatorWithIof) {
+            taxes += ((PaidCalculatorWithIof) this).calculateIof(totalWithoutTax);
+        }
         return totalWithoutTax + taxes;
     }
 
