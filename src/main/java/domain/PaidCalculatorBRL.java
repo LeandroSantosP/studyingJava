@@ -2,13 +2,12 @@ package domain;
 
 public class PaidCalculatorBRL extends PaidCalculator {
     @Override
-    double getTax() {
-        return 0.06;
-    }
-
-    @Override
     String getCurrency() {
         return "BRL";
+    }
+
+    private double getTax() {
+        return 0.06;
     }
 
     @Override
@@ -17,9 +16,8 @@ public class PaidCalculatorBRL extends PaidCalculator {
     }
 
     @Override
-    double calculateTotal(double amountToBought) {
-        double totalWithoutTax = amountToBought * this.getPercentage();
-        var taxes = this.calculateSixPercentage(totalWithoutTax);
-        return totalWithoutTax + taxes;
+    double calculateSixPercentage(double amount) {
+        return amount * this.getTax();
     }
+
 }
