@@ -1,18 +1,14 @@
 package domain;
 
-public class PaidCalculator {
-    double dollarPriceADouble;
-
-    public PaidCalculator() {
-
+public abstract class PaidCalculator {
+    abstract double getTax();
+    abstract String getCurrency();
+    abstract double getPercentage();
+    protected double calculateSixPercentage(double amount) {
+        return amount * this.getTax();
     }
-    public void setDollarPriceADouble(double dollarPriceADouble) {
-        this.dollarPriceADouble = dollarPriceADouble;
-    }
-
-   public double buy(double amountToBought, String currency) {
-        if(currency == null) currency = "USD";
-        double totalWithoutTax = amountToBought * this.dollarPriceADouble;
-        return totalWithoutTax;
+    abstract double calculateTotal(double amountToBought);
+    public String buy(double amountToBought) throws Exception {
+        return String.format("Amount to be pay in %s = %.2f", this.getCurrency(), this.calculateTotal(amountToBought));
     }
 }
