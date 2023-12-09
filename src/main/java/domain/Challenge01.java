@@ -12,7 +12,7 @@ public class Challenge01 {
         Scanner sac = new Scanner(System.in);
 
         double width = sac.nextDouble();
-        double length = sac.nextDouble();
+                double length = sac.nextDouble();
         double pricePer = sac.nextDouble();
         double area =  width * length;
         double total = area * pricePer;
