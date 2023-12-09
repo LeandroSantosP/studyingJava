@@ -1,5 +1,7 @@
 package domain.SOLID.application;
 
+import domain.SOLID.domian.EmployeeTimeRecord;
+
 import java.util.Date;
 
 public class PayRoll {
@@ -18,9 +20,18 @@ public class PayRoll {
     }
 
     PayRollOutput execute(PayRollInput input) {
-        System.out.println(new Date().getTime());
-        System.out.println(this.timeRecordRepository.getTimeRecordByEmployeeId(input.employeeId).size());
-        return null;
+
+        var records = this.timeRecordRepository.getTimeRecordByEmployeeId(input.employeeId);
+        int hours = 0;
+        for(EmployeeTimeRecord employeeTimeRecord : records) {
+           hours += (int) (employeeTimeRecord.checkOutDate().getTime() - employeeTimeRecord.checkingDate().getTime()) /(1000*60*60);
+        }
+
+        double salaryPerHourly = 30;
+
+        double salaryTotal = hours * salaryPerHourly;
+
+        return new PayRoll.PayRollOutput("Matheus Silva", salaryTotal);
     }
 
 }
