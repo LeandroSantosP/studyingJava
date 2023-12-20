@@ -2,6 +2,7 @@ package domain;
 
 public class BItWise {
 
+
     String exec(int input) {
         /*
         *  Operation Bit Bit

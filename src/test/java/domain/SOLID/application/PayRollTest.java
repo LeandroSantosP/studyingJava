@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class PayRollTest {
 
     @Test
-    void shouldCalculatePayRollToEmployeePedro() throws ParseException {
+    void shouldCalculatePayRollToEmployeeHourly() throws ParseException {
 
         var payRoll = new PayRoll(new TimeRecordRepositoryMemory());
         var StokeEntryIncreaseInput = new PayRoll.PayRollInput(1, 12, 2023);

@@ -10,7 +10,6 @@ public class PayRoll {
 
     PayRoll(TimeRecordRepository timeRecord) {
         this.timeRecordRepository = timeRecord;
-        // id , startDate, endDate
     }
 
     record PayRollInput(int employeeId, int month, int year) {
