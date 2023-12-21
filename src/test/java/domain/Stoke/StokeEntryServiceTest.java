@@ -29,8 +29,6 @@ class StokeEntryServiceTest {
         assertEquals(operation, "in");
         assertNotEquals(operation, "out");
     }
-
-
     @Test
     void shouldBePossibleDecreaseAnProductOnStoke() throws NoSuchStokeEntryException {
         StokeEntryRepository stokeEntryRepositoryMemory = this.stokeEntryRepositoryMemory;

@@ -8,22 +8,35 @@ public class Account {
 
     public Account(int accountNumber, String holder, double initialDeposit) {
         if (initialDeposit != 0) {
-            this.balance = initialDeposit;
+            this.deposit(initialDeposit);
         }
-        if(initialDeposit < 0) {
+        if (!isGreaterThanZero(initialDeposit)) {
             throw new IllegalArgumentException("InitialDeposit must be greater than 0!");
         }
         this.accountNumber = accountNumber;
         this.accountHolder = holder;
     }
 
+    private boolean isGreaterThanZero(double value) {
+        return value > 0;
+    }
+
     public void withDrawn(double amount) {
-        if(this.balance < amount) {
+        if (!this.isGreaterThanZero(amount)) {
+            throw new IllegalArgumentException("Invalid amount to WithDrawn!");
+        }
+        if (this.balance < amount) {
             throw new IllegalArgumentException("The Client doesn't have the amount available");
         }
         this.balance -= amount;
     }
-    public void deposit(double amount) { this.balance += amount; }
+
+    public void deposit(double amount) {
+        if (!this.isGreaterThanZero(amount)) {
+            throw new IllegalArgumentException("Invalid amount to WithDrawn!");
+        }
+        this.balance += amount;
+    }
 
     public int getAccountNumber() {
         return accountNumber;
