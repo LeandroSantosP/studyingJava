@@ -1,4 +1,4 @@
-package domain.Theard;
+package domain.Theard.TT01;
 
 public class ExecuteTicTac {
 

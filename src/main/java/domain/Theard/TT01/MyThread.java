@@ -1,4 +1,4 @@
-package domain.Theard;
+package domain.Theard.TT01;
 
 public class MyThread extends Thread {
     private String name;
@@ -12,6 +12,7 @@ public class MyThread extends Thread {
 
     @Override
     public void run() {
+
         try {
             for (int i = 0; i < 6; i++) {
                 System.out.println("Exec the Thread: " + this.name + " #counter: " + i);
