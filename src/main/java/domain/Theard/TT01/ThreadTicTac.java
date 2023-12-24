@@ -13,14 +13,14 @@ public class ThreadTicTac implements Runnable {
     public void run() {
         if (this.t.getName().equalsIgnoreCase("Tic")) {
             for (int i = 0; i < this.NUM; i++) {
-                tt.tic(true);
+                this.tt.tic(true);
             }
             tt.tic(false);
         } else {
             for (int i = 0; i < this.NUM; i++) {
-                tt.tac(true);
+                this.tt.tac(true);
             }
-            tt.tac(false);
+            this.tt.tac(false);
         }
     }
 }
