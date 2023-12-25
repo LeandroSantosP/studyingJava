@@ -35,8 +35,6 @@ public class Exec {
             case 7 -> System.out.println("Domindo-feira");
         }
     }
-
-
     /*
     * Enum
     * */
