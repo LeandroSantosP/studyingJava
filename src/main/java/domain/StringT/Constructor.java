@@ -1,7 +1,5 @@
 package domain.StringT;
 
-import java.util.Arrays;
-
 public class Constructor {
     public static void main(String[] args) {
         char[] words = {'a', 'b', 'c', 'd'};
