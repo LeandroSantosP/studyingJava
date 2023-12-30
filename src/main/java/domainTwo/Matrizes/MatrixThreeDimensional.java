@@ -1,8 +1,5 @@
 package domainTwo.Matrizes;
 
-import javax.swing.*;
-import java.util.Arrays;
-
 public class MatrixThreeDimensional {
 
     public static void main(String[] args) {
