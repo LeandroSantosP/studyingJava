@@ -34,13 +34,14 @@ public class MatrixTwoDimensional {
                 {}
         };
 //        simplify(studentsGrades);
-        exec(studentsGrades);
+
+        exec(studentsGrades, studentsGrades.length);
     }
 
     private record Averages(int ID, double amount) {
     }
 
-    static void exec(double[][] studentsGrades) {
+    static void exec(double[][] studentsGrades, int avgNum) {
         for (int i = 0; i < studentsGrades.length; i++) {
             for (int j = 0; j < studentsGrades[i].length; j++) {
                 System.out.print(studentsGrades[i][j] + " | " + "\t");
@@ -48,31 +49,31 @@ public class MatrixTwoDimensional {
             System.out.println("\n" + "-----------------------------"); // Nova linha para a próxima linha da matriz
         }
 
-        Averages[] averages = new Averages[5];
+        Averages[] averages = new Averages[avgNum];
         double averageSum;
-        for (int c = 0; c < studentsGrades.length; c++) {
+        for (int r = 0; r < studentsGrades.length; r++) {
             averageSum = 0;
-            for (int r = 0; r < studentsGrades[c].length; r++) {
-                double subtotal = studentsGrades[c][r];
+            for (int c = 0; c < studentsGrades[r].length; c++) {
+                double subtotal = studentsGrades[r][c];
                 averageSum += subtotal / studentsGrades[0].length;
             }
-            averages[c] = new Averages(c + 1, averageSum);
+            averages[r] = new Averages(r + 1, averageSum);
         }
         Arrays.stream(averages).forEach(i -> System.out.println("Average of " + i.ID() + " is " + i.amount()));
     }
 
     static void simplify(double[][] studentsGrades) {
-        for (double[] columns : studentsGrades) {
-            for (double lines : columns) {
-                System.out.print(lines + " | " + "\t");
+        for (double[] rows : studentsGrades) {
+            for (double col : rows) {
+                System.out.print(col + " | " + "\t");
             }
             System.out.println("\n" + "-----------------------------"); // Nova linha para a próxima linha da matriz
         }
         Averages[] averages = new Averages[studentsGrades.length];
 
-        for (int c = 0; c < studentsGrades.length; c++) {
-            double average = Arrays.stream(studentsGrades[c]).average().orElse(0);
-            averages[c] = new Averages(c + 1, average);
+        for (int r = 0; r < studentsGrades.length; r++) {
+            double average = Arrays.stream(studentsGrades[r]).average().orElse(0);
+            averages[r] = new Averages(r + 1, average);
         }
         Arrays.stream(averages)
                 .forEach(i -> System.out.println("Average of " + i.ID() + " is " + i.amount()));
