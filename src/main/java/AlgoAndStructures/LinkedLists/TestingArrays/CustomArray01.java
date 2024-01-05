@@ -7,7 +7,7 @@ import java.util.List;
 
 public class CustomArray01 {
     private String[] itens;
-    private int currentPosition = 0;
+    private int size = 0;
 
     public CustomArray01(int capacity) {
         if (capacity < 0) {
@@ -35,17 +35,10 @@ public class CustomArray01 {
             }
             items.add(current);
         }
-
         IndexItem[] sortItems = items.toArray(new IndexItem[0]);
         Arrays.sort(sortItems);
         int possition = BinarySearch.exec(currentTarget, sortItems);
         return possition == -1 ? -1 : sortItems[possition].originalIndex;
-    }
-
-    private void validationIndex(int index) {
-        if (index > this.size() - 1 || index < 0) {
-            throw new IllegalArgumentException("Invalid Index");
-        }
     }
 
     public String remove(int index) {
@@ -60,22 +53,43 @@ public class CustomArray01 {
 
     public void add(String item) {
         if (nextPositionIsEmpty()) {
-            this.itens[this.currentPosition] = item;
+            this.itens[this.size] = item;
             return;
         }
         validBounds();
-        this.currentPosition++;
-        this.itens[this.currentPosition] = item;
+        this.size++;
+        this.itens[this.size] = item;
+    }
+
+    // 0 1 2 3
+    // A B C D
+    public void add(int pos, String item) {
+        validationIndex(pos);
+
+
+        for (int i = this.size; i >= pos; i--) {
+            this.itens[i + 1] = this.itens[i];
+        }
+
+        validBounds();
+        this.itens[pos] = item;
+        this.size++;
     }
 
     private void validBounds() {
-        if (this.currentPosition + 1 > this.size() - 1) {
+        if (this.size + 1 > this.size() - 1) {
             throw new IllegalArgumentException("List is already full!, it's not possible add more items to the list.");
         }
     }
 
+    private void validationIndex(int index) {
+        if (index > this.size() - 1 || index < 0) {
+            throw new IllegalArgumentException("Invalid Index");
+        }
+    }
+
     private boolean nextPositionIsEmpty() {
-        return this.itens[this.currentPosition] == null;
+        return this.itens[this.size] == null;
     }
 
     public int size() {
@@ -88,11 +102,11 @@ public class CustomArray01 {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[");
         for (int i = 0; i < this.size(); i++) {
-            if (i >= this.currentPosition && this.itens[i] == null) {
+            if (i >= this.size && this.itens[i] == null) {
                 continue;
             }
             stringBuilder.append(this.itens[i]);
-            if (i < this.currentPosition) {
+            if (i < this.size) {
                 stringBuilder.append(", ");
             }
         }
