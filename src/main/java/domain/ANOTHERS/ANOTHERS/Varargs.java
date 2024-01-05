@@ -1,4 +1,4 @@
-package domain.ANOTHERS;
+package domain.ANOTHERS.ANOTHERS;
 
 import java.util.Arrays;
 

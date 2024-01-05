@@ -1,4 +1,4 @@
-package domain.ANOTHERS.TestingCode;
+package domain.ANOTHERS.ANOTHERS.TestingCode;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package domain.ANOTHERS.ANNOTAIONS;
+package domain.ANOTHERS.ANOTHERS.ANNOTAIONS;
 
 @Info(author = "Leandro", age = 23, url = "https://github.com/LeandroSantosP")
 public class ExecInfo {

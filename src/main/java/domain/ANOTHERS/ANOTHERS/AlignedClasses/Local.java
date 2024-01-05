@@ -1,4 +1,4 @@
-package domain.ANOTHERS.AlignedClasses;
+package domain.ANOTHERS.ANOTHERS.AlignedClasses;
 
 public class Local {
     public void exec() {

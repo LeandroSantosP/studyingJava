@@ -1,4 +1,4 @@
-package domain.ANOTHERS.TestingCode;
+package domain.ANOTHERS.ANOTHERS.TestingCode;
 
 public class Test05 {
 

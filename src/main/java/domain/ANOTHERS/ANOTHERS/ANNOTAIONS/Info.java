@@ -1,4 +1,4 @@
-package domain.ANOTHERS.ANNOTAIONS;
+package domain.ANOTHERS.ANOTHERS.ANNOTAIONS;
 
 public @interface Info {
     String author();
