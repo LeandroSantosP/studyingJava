@@ -7,7 +7,7 @@ import java.util.List;
 
 public class CustomArray01 {
     private String[] itens;
-    private int size = 0;
+    private int amount = 0;
 
     public CustomArray01(int capacity) {
         if (capacity < 0) {
@@ -52,29 +52,48 @@ public class CustomArray01 {
     }
 
     public void add(String item) {
+        addCapacity();
         if (nextPositionIsEmpty()) {
-            this.itens[this.size] = item;
+            this.itens[this.amount] = item;
             return;
         }
         validBounds();
-        this.size++;
-        this.itens[this.size] = item;
+        this.amount++;
+        this.itens[this.amount] = item;
     }
 
     // 0 1 2 3
     // A B C D
     public void add(int pos, String item) {
         validationIndex(pos);
-        for (int i = this.size; i >= pos; i--) {
+        addCapacity();
+        for (int i = this.amount; i >= pos; i--) {
+            validBounds();
             this.itens[i + 1] = this.itens[i];
         }
-        validBounds();
         this.itens[pos] = item;
-        this.size++;
+        this.amount++;
+    }
+
+    private void addCapacity() {
+        if (!isFull()) return;
+        String[] newElements = new String[this.size() * 2];
+        for (int i = 0; i < this.size() * 2; i++) {
+            if (i >= this.size()) {
+                newElements[i] = null;
+                continue;
+            }
+            newElements[i] = this.itens[i];
+        }
+        this.itens = newElements;
+    }
+
+    private boolean isFull() {
+        return this.amount + 1 == this.size();
     }
 
     private void validBounds() {
-        if (this.size + 1 > this.size() - 1) {
+        if (this.amount + 1 > this.size() - 1) {
             throw new IllegalArgumentException("List is already full!, it's not possible add more items to the list.");
         }
     }
@@ -86,7 +105,7 @@ public class CustomArray01 {
     }
 
     private boolean nextPositionIsEmpty() {
-        return this.itens[this.size] == null;
+        return this.itens[this.amount] == null;
     }
 
     public int size() {
@@ -99,11 +118,11 @@ public class CustomArray01 {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[");
         for (int i = 0; i < this.size(); i++) {
-            if (i >= this.size && this.itens[i] == null) {
+            if (i >= this.amount && this.itens[i] == null) {
                 continue;
             }
             stringBuilder.append(this.itens[i]);
-            if (i < this.size) {
+            if (i < this.amount) {
                 stringBuilder.append(", ");
             }
         }
