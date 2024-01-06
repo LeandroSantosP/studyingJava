@@ -65,12 +65,9 @@ public class CustomArray01 {
     // A B C D
     public void add(int pos, String item) {
         validationIndex(pos);
-
-
         for (int i = this.size; i >= pos; i--) {
             this.itens[i + 1] = this.itens[i];
         }
-
         validBounds();
         this.itens[pos] = item;
         this.size++;
