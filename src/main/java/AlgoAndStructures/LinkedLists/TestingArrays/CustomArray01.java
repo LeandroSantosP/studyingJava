@@ -1,6 +1,5 @@
 package AlgoAndStructures.LinkedLists.TestingArrays;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,7 +20,7 @@ public class CustomArray01 {
         return this.itens[index];
     }
 
-    public int search(String target) {
+    public IndexItem search(String target) {
         var binarySearch = new BinarySearch();
         List<IndexItem> items = new ArrayList<>();
         IndexItem currentTarget = null;
@@ -30,7 +29,7 @@ public class CustomArray01 {
                 continue;
             }
             var current = new IndexItem(this.itens[i], i);
-            if (current.value == target) {
+            if (current.value.equals(target)) {
                 currentTarget = current;
             }
             items.add(current);
@@ -38,37 +37,45 @@ public class CustomArray01 {
         IndexItem[] sortItems = items.toArray(new IndexItem[0]);
         Arrays.sort(sortItems);
         int possition = BinarySearch.exec(currentTarget, sortItems);
-        return possition == -1 ? -1 : sortItems[possition].originalIndex;
+        return possition == -1 ? null : sortItems[possition];
     }
 
-    public String remove(int index) {
-        validationIndex(index);
-        var item = this.itens[index];
-        for (int i = index; i < this.size(); i++) {
-            int nextPosition = i + i;
-            if(nextPosition >= this.size()){
+    public String remove(int pos) {
+        validationIndex(pos);
+        var item = this.itens[pos];
+        for (int i = pos; i < this.amount; i++) {
+            if (i >= this.itens.length) {
                 break;
             }
-            this.itens[i] = this.itens[nextPosition];
-        };
+            this.itens[i] = this.itens[i + 1];
+        }
+        this.amount--;
+        this.itens[this.amount] = null;
         return item;
     }
 
+    public String remove(String target) {
+        var item = this.search(target);
+        if (item == null) throw new IllegalArgumentException("Element not found for removal!");
+        this.remove(item.originalIndex);
+        return item.value;
+    }
+
     public void add(String item) {
-        addCapacity();
+        this.addCapacity();
         if (nextPositionIsEmpty()) {
             this.itens[this.amount] = item;
             return;
         }
-        validBounds();
+        this.validBounds();
         this.amount++;
         this.itens[this.amount] = item;
     }
+
     // 0 1 2 3
     // A B C D
     public void add(int pos, String item) {
         validationIndex(pos);
-        addCapacity();
         for (int i = this.amount; i >= pos; i--) {
             validBounds();
             this.itens[i + 1] = this.itens[i];
@@ -79,9 +86,10 @@ public class CustomArray01 {
 
     private void addCapacity() {
         if (!isFull()) return;
-        String[] newElements = new String[this.size() * 2];
-        for (int i = 0; i < this.size() * 2; i++) {
-            if (i >= this.size()) {
+        // could be replace by Array.copy
+        String[] newElements = new String[this.itens.length * 2];
+        for (int i = 0; i < this.itens.length * 2; i++) {
+            if (i >= this.itens.length) {
                 newElements[i] = null;
                 continue;
             }
@@ -91,17 +99,17 @@ public class CustomArray01 {
     }
 
     private boolean isFull() {
-        return this.amount + 1 == this.size();
+        return this.amount + 1 == this.itens.length;
     }
 
     private void validBounds() {
-        if (this.amount + 1 > this.size() - 1) {
+        if (this.amount + 1 > this.itens.length - 1) {
             throw new IllegalArgumentException("List is already full!, it's not possible add more items to the list.");
         }
     }
 
     private void validationIndex(int index) {
-        if (index > this.size() - 1 || index < 0) {
+        if (index > this.itens.length - 1 || index < 0) {
             throw new IllegalArgumentException("Invalid Index");
         }
     }
@@ -110,16 +118,12 @@ public class CustomArray01 {
         return this.itens[this.amount] == null;
     }
 
-    public int size() {
-        return this.itens.length;
-    }
-
     /*  My Solution */
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[");
-        for (int i = 0; i < this.size(); i++) {
+        for (int i = 0; i < this.itens.length; i++) {
             if (i >= this.amount && this.itens[i] == null) {
                 continue;
             }
@@ -131,7 +135,7 @@ public class CustomArray01 {
         stringBuilder.append("]");
         return "CustomArray01{" +
                 "itens=" + stringBuilder.toString() +
-                '}';
+                '}' + ", size: " + this.itens.length + ", amount: " + this.amount;
     }
 
     /*  Gpt Solution */
