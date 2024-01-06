@@ -44,10 +44,13 @@ public class CustomArray01 {
     public String remove(int index) {
         validationIndex(index);
         var item = this.itens[index];
-        if (item == null) {
-            throw new IllegalArgumentException("Item already removed!");
-        }
-        this.itens[index] = null;
+        for (int i = index; i < this.size(); i++) {
+            int nextPosition = i + i;
+            if(nextPosition >= this.size()){
+                break;
+            }
+            this.itens[i] = this.itens[nextPosition];
+        };
         return item;
     }
 
@@ -61,7 +64,6 @@ public class CustomArray01 {
         this.amount++;
         this.itens[this.amount] = item;
     }
-
     // 0 1 2 3
     // A B C D
     public void add(int pos, String item) {
