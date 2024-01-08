@@ -79,6 +79,8 @@ public abstract class MyStackBase<T> {
 
     @Override
     public String toString() {
+        System.out.println(Arrays.toString(this.stack));
+
         if (this.stack == null || this.size == 0) {
             return "Gpt=CustomArray01{itens=[]}";
         }

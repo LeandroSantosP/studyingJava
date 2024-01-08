@@ -7,8 +7,9 @@ public class Exec {
         for (int i = 1; i <= 10; i++) {
             stack.stackIn("Stack " + (i));
         }
-        System.out.println(stack.top());
-        System.out.println(stack.isEmpty());
+        System.out.println(stack.stackOut());
+//        System.out.println(stack.top());
+//        System.out.println(stack.isEmpty());
         System.out.println(stack);
     }
 }

@@ -19,4 +19,14 @@ public class MyStack<T> extends MyStackBase<T> {
     public void stackIn(T item) {
         super.add(item);
     }
+
+    public T stackOut() {
+        if (this.isEmpty()) {
+            return null;
+        }
+        var popped = this.stack[this.size - 1];
+        // return item afterwards decrease size.
+        this.stack[--this.size] = null;
+        return popped;
+    }
 }
