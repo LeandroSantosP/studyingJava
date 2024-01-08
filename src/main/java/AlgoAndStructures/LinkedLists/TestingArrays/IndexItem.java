@@ -3,7 +3,6 @@ package AlgoAndStructures.LinkedLists.TestingArrays;
 public class IndexItem implements Comparable<IndexItem> {
     String value;
     int originalIndex;
-
     public IndexItem(String value, int originalIndex) {
         this.value = value;
         this.originalIndex = originalIndex;
