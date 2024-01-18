@@ -1,4 +1,4 @@
-package AlgoAndStructures.LinkedLists.TestingArrays;
+package AlgoAndStructures.LinkedLists.ArrayListString;
 
 public class BinarySearch {
     static public <T extends Comparable<T>> int exec(T target, T[] list) {

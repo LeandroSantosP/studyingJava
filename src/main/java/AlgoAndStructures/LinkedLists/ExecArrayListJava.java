@@ -1,8 +1,8 @@
 package AlgoAndStructures.LinkedLists;
 
-import AlgoAndStructures.LinkedLists.TestingArrays.CustomArray01;
+import AlgoAndStructures.LinkedLists.ArrayListString.CustomArray01;
 
-public class Exec {
+public class ExecArrayListJava {
     public static void main(String[] args) {
         CustomArray01 arr = new CustomArray01(5);
         try {

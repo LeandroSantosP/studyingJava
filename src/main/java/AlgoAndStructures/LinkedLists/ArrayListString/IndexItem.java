@@ -1,4 +1,4 @@
-package AlgoAndStructures.LinkedLists.TestingArrays;
+package AlgoAndStructures.LinkedLists.ArrayListString;
 
 public class IndexItem implements Comparable<IndexItem> {
     String value;

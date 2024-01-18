@@ -73,7 +73,7 @@ public abstract class MyStackBase<T> {
         return this.stack.length;
     }
 
-    boolean isEmpty() {
+    public boolean isEmpty() {
         return this.size == 0;
     }
 

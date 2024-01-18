@@ -8,8 +8,8 @@ public class Exec {
             stack.stackIn("Stack " + (i));
         }
         System.out.println(stack.stackOut());
-//        System.out.println(stack.top());
-//        System.out.println(stack.isEmpty());
+        // System.out.println(stack.top());
+        // System.out.println(stack.isEmpty());
         System.out.println(stack);
     }
 }

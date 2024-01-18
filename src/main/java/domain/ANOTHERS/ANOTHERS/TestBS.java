@@ -1,6 +1,6 @@
 package domain.ANOTHERS.ANOTHERS;
 
-import AlgoAndStructures.LinkedLists.TestingArrays.BinarySearch;
+import AlgoAndStructures.LinkedLists.ArrayListString.BinarySearch;
 
 public class TestBS {
     public static void main(String[] args) {

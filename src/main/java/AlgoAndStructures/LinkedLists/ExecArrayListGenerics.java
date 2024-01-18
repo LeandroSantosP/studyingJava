@@ -1,7 +1,8 @@
 package AlgoAndStructures.LinkedLists;
-import AlgoAndStructures.LinkedLists.TestingArrays01.CustomArray02;
 
-public class ExecWithGenerics {
+import AlgoAndStructures.LinkedLists.ArraysListGenerics.CustomArray02;
+
+public class ExecArrayListGenerics {
     public static void main(String[] args) {
         CustomArray02<Integer> arr = new CustomArray02<>(5);
         try {

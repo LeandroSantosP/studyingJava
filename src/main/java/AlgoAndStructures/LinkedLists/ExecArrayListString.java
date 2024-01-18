@@ -1,8 +1,8 @@
-package AlgoAndStructures.LinkedLists.ArrayList00;
+package AlgoAndStructures.LinkedLists;
 
 import java.util.ArrayList;
 
-public class Exec00 {
+public class ExecArrayListString {
     ArrayList<String> list;
 
     public static void main(String[] args) {
