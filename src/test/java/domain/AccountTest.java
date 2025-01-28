@@ -18,12 +18,11 @@ class AccountTest {
 
     @Test
     void shouldBeAbleMakeADepositOf100IntoTheAccount() {
-        Account account = new Account(12344, "Alex green", 0);
-        assertEquals(account.toString(), "Account: Alex green, Holder: Alex green, Balance: 0.00");
-        account.deposit(100);
+        Account account = new Account(12344, "Alex green", 100);
         assertEquals(account.toString(), "Account: Alex green, Holder: Alex green, Balance: 100.00");
+        account.deposit(100);
+        assertEquals(account.toString(), "Account: Alex green, Holder: Alex green, Balance: 200.00");
     }
-
 
     @Test()
     void shouldBeAbleMakeAWithDrawnOf100IntoTheAccount() {
@@ -35,10 +34,10 @@ class AccountTest {
 
     @Test()
     void shouldNotBeAbleWithDrawnAnAmountThatYouDoNotHaveAvailable() {
-        Account account = new Account(12344, "Alex green", 0);
-        assertEquals(account.toString(), "Account: Alex green, Holder: Alex green, Balance: 0.00");
+        Account account = new Account(12344, "Alex green", 100);
+        assertEquals(account.toString(), "Account: Alex green, Holder: Alex green, Balance: 100.00");
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            account.withDrawn(100);
+            account.withDrawn(200);
         });
         assertEquals("The Client doesn't have the amount available", exception.getMessage());
     }
