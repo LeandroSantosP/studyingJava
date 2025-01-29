@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"core","l":"ArrrayCommunManipulation"},{"p":"core","l":"MadLibs"},{"p":"core","l":"MyHttpServer"},{"p":"core","l":"MyString"},{"p":"core","l":"MyStringBuffer"},{"p":"core","l":"Readability"},{"p":"core","l":"Scrabble"}];updateSearchResults();

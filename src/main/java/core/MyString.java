@@ -1,12 +1,38 @@
 package core;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class MyString {
    static private byte[] byteArrayHelloWord = { 72, 101, 108, 108, 111, 44, 32, 87, 111, 114, 108, 100, 33 };
 
    public static void main(String[] args) {
-      MyString.construc();
+      // MyString.construc();
+      MyString.subString();
+   }
+
+   static void subString() {
+      Scanner scanner = new Scanner(System.in);
+      System.out.print("Email: ");
+      String email = scanner.nextLine();
+      String username = email.substring(0, email.indexOf("@"));
+      if (email.indexOf("@") == -1 || email.indexOf(".") == -1) {
+         System.out.printf("Invalid Email!: %s\n", email);
+         scanner.close();
+         return;
+      }
+      String ts = "lEANDRO@".substring(1);
+      System.out.println("TEST "+ts);
+      String domain = email.substring(email.indexOf("@") + 1, email.indexOf("."));
+      ArrayList<String> validDomains = new ArrayList<String>(Arrays.asList("gmail", "email"));
+      if (validDomains.contains(domain)) {
+         System.out.printf("Username: %s, Domain: %s\n", username, domain);
+      } else {
+         System.out.printf("Invalid Email Domain! valid domains available: %s\n", Arrays.toString(validDomains.toArray()));
+      }
+      scanner.close();
    }
 
    static void construc() {
