@@ -1,11 +1,52 @@
 package AlgoAndStructures.Leetcode;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LeetCodeProblems {
    public static void main(String[] args) {
-      int[] s = { 1, 2, 3, 4 };
-      System.out.println("RES: " + Arrays.toString(new LeetCodeProblems().runningSum(s)));
+      int[] s = { 1, 0, 0, 3, 4 };
+      new LeetCodeProblems().moveZeroes(s);
+   }
+
+   public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
+      int max = candies[0];
+
+      for (int num : candies) {
+         if (num > max) {
+            max = num;
+         }
+      }
+
+      ArrayList<Boolean> kidsWithGrestestCaniies = new ArrayList<>();
+
+      for (int i = 0; i < candies.length; i++) {
+         int crr = candies[i];
+         if (crr + extraCandies >= max) {
+            kidsWithGrestestCaniies.add(true);
+         } else {
+            kidsWithGrestestCaniies.add(false);
+         }
+      }
+      return kidsWithGrestestCaniies;
+   }
+
+   public void moveZeroes(int[] nums) {
+      // tracks where the next no-zero element should be placed.
+      int last_no_zero_idx = 0;
+      for (int num : nums) {
+         /* So, this part of the code shifts all non-zero elements to the front of the array. */
+         // if is an zero that no problem because if the next elements is an no-zero
+         // than they will the replace by the next value
+         if (num!=0) {
+            nums[last_no_zero_idx] = num;
+            last_no_zero_idx++; 
+         }
+      }
+
+      while (last_no_zero_idx < nums.length) {
+         nums[last_no_zero_idx++] = 0;
+      }
    }
 
    public int[] runningSum(int[] nums) {
@@ -15,7 +56,7 @@ public class LeetCodeProblems {
 
       for (int i = 1; i < n; i++) {
          runningSum[i] = runningSum[i - 1] + nums[i];
-     }
+      }
 
       return runningSum;
    }
