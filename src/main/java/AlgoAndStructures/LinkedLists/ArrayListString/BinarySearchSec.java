@@ -10,7 +10,7 @@ public class BinarySearchSec {
       var binarySearchSec = new BinarySearchSec();
       Integer[] array = arr.toArray(new Integer[0]);
       int idx = binarySearchSec.exec(98, array);
-      int idx2 = binarySearchSec.exec(23, array, 0, array.length-1);
+      int idx2 = binarySearchSec.exec(109, array, 0, array.length - 1);
       System.out.println(idx2);
    }
 
@@ -33,16 +33,16 @@ public class BinarySearchSec {
 
    private <T extends Comparable<T>> int exec(T target, T[] arr, int left, int right) {
       if (left > right) {
-         return - 1;
+         return -1;
       }
       int middle = left + (right - left) / 2;
       int compare = arr[middle].compareTo(target);
       if (compare == 0) {
-         return middle; // Element found
-     } else if (compare > 0) {
-         return exec(target, arr, left, middle - 1); 
-     } else {
-         return exec(target, arr, middle + 1, right); 
-     }
+         return middle;
+      } else if (compare > 0) {
+         return exec(target, arr, left, middle - 1);
+      } else {
+         return exec(target, arr, middle + 1, right);
+      }
    }
 }

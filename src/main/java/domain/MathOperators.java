@@ -7,7 +7,7 @@ public class MathOperators {
   private Scanner scanner = new Scanner(System.in);
 
   public static void main(String[] args) {
-    new MathOperators().calc_two();
+    new MathOperators().calc();
   }
 
   public void calc_two() {

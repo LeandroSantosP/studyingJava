@@ -11,6 +11,10 @@ public class MyString {
    public static void main(String[] args) {
       // MyString.construc();
       MyString.subString();
+
+      for (int i = 0; i < args.length; i++) {
+         
+      }
    }
 
    static void subString() {
