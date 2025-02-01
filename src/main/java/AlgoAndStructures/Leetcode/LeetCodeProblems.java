@@ -73,11 +73,39 @@ class IsSubsequence {
    }
 }
 
+class BestTimetoBuyAndSellStock {
+   public int maxProfit(int[] prices) {
+      int buyPointer = prices[0];
+      int max = 0;
+
+      for (int sellPoiter = 1; sellPoiter < prices.length; sellPoiter++) {
+         int current = prices[sellPoiter]; // get the current seller
+         int profit = current - buyPointer; // get the profit of the between the current and the last lowest
+         
+          
+         // Math has the  effect of the If
+         /* if (profit > max) {
+            max = profit; 
+         } */
+         max = Math.max(max, profit);
+         
+          
+         // Math has the  effect of the If
+         buyPointer = Math.min(buyPointer, current);
+         /* if (buyPointer < current) {
+            buyPointer = current;
+         } */
+      }
+
+      return max;
+   }
+}
+
 public class LeetCodeProblems {
    public static void main(String[] args) {
       int[] s = { 1, 0, 0, 3, 4 };
       new LeetCodeProblems();
-      System.out.println(new IsSubsequence().isSubsequence("abc", "ahbgdc"));
+      System.out.println(new BestTimetoBuyAndSellStock().maxProfit(new int[] { 7, 1, 5, 3, 6, 4 }));
    }
 
    public int[] twoSum(int[] nums, int target) {
