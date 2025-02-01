@@ -4,18 +4,81 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /* ADD A COMMENT */
 /* ADD A COMMENT - 2 */
 
+class RomanToInteger {
+
+   private static final Map<Character, Integer> romanMap = new HashMap<>();
+
+   static {
+      romanMap.put('I', 1);
+      romanMap.put('V', 5);
+      romanMap.put('X', 10);
+      romanMap.put('L', 50);
+      romanMap.put('C', 100);
+      romanMap.put('D', 500);
+      romanMap.put('M', 1000);
+   };
+
+   public int romanToInt(String s) {
+      int total = 0;
+
+      for (int i = 0, l = s.length(); i < l; i++) {
+         int current = romanMap.get(s.charAt(i));
+         if (i + 1 < l && current < romanMap.get(s.charAt(i + 1))) {
+            total -= current;
+            continue;
+         }
+         total += current;
+      }
+      return total;
+   }
+
+   public int romanToIntTwo(String s) {
+      int total = 0;
+      int prev = 0;
+      for (int i = s.length() - 1; i >= 0; i--) {
+         int current = romanMap.get(s.charAt(i));
+         if (current < prev) {
+            total -= current;
+         } else {
+            total += current;
+         }
+         prev = current;
+      }
+      return total;
+   }
+}
+
+class IsSubsequence {
+   public boolean isSubsequence(String s, String t) {
+      int i = 0;
+      int j = 0;
+      if (s == "") {
+         return true;
+      }
+      while (j < t.length()) {
+         if (s.charAt(i) == t.charAt(j)) {
+            i++;
+            if (i == s.length()) {
+               return true;
+            }
+         }
+         j++;
+      }
+      return false;
+   }
+}
+
 public class LeetCodeProblems {
    public static void main(String[] args) {
       int[] s = { 1, 0, 0, 3, 4 };
-      new LeetCodeProblems().moveZeroes(s);
-      System.out.println(Arrays.toString(s));
+      new LeetCodeProblems();
+      System.out.println(new IsSubsequence().isSubsequence("abc", "ahbgdc"));
    }
-   
-   //13
 
    public int[] twoSum(int[] nums, int target) {
       int[] result = new int[2];
@@ -23,7 +86,7 @@ public class LeetCodeProblems {
       HashMap<Integer, Integer> mrr = new HashMap<>();
 
       for (int i = 0; i < nums.length; i++) {
-         var complement = target - nums[i]; 
+         var complement = target - nums[i];
          if (mrr.containsKey(complement)) {
             result[0] = i;
             result[1] = mrr.get(complement);
