@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -53,7 +52,6 @@ public class JdbcConnction implements MyConnection {
          int n = 0;
          while (n < params.size()) {
             var current = params.get(n);
-            System.out.println(current);
             stmt.setObject(current.col(), current.value());
             n++;
          }
@@ -75,12 +73,12 @@ public class JdbcConnction implements MyConnection {
          ResultSet rs = stmt.executeQuery(args);
          var metaData = rs.getMetaData();
          int columnCount = metaData.getColumnCount();
-
          while (rs.next()) {
             Map<String, Object> row = new HashMap<>();
-            for (int i = 0; i < columnCount; i++) {
+            for (int i = 1; i < columnCount; i++) {
                row.put(metaData.getColumnName(i), rs.getObject(i));
             }
+            results.add(row);
          }
       } catch (SQLException e) {
          e.printStackTrace();
