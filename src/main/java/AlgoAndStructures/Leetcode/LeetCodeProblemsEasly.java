@@ -9,7 +9,7 @@ import java.util.Map;
 /* ADD A COMMENT */
 /* ADD A COMMENT - 2 */
 
-class  RomanToInteger {
+class RomanToInteger {
 
 	private static final Map<Character, Integer> romanMap = new HashMap<>();
 
@@ -106,18 +106,53 @@ class BestTimetoBuyAndSellStock {
 	}
 }
 
-public class LeetCodeProblems {
+class InnerLeetCodeProblems {
+	public String longestCommonPrefix(String[] strs) {
+		String ref = strs[0];
+		for (int i = 1; i < strs.length; i++) {
+			while (!strs[i].startsWith(ref)) {
+				ref = ref.substring(0, ref.length() - 1);
+			}
+		}
+		return ref;
+	}
+}
+
+class SummryRanges {
+	static public List<String> summaryRanges(int[] nums) {
+		List<String> summary = new ArrayList<>();
+		for (int i = 0; i < nums.length; i++) {
+			int start = nums[i];
+			while (i < nums.length - 1 && nums[i] + 1 == nums[i + 1]) {//
+				i++;
+			}
+			if (start == nums[i]) {
+				summary.add(Integer.toString(nums[i]));
+			} else {
+				summary.add(start + "->" + Integer.toString(nums[i]));
+			}
+		}
+		return summary;
+	}
+}
+
+public class LeetCodeProblemsEasly {
 	public static void main(String[] args) {
+
+		int[] in = { 0, 2, 3, 4, 6, 8, 9 };
+		System.out.println(SummryRanges.summaryRanges(in));
+
 		int[] s = { 1, 0, 0, 3, 4 };
-		new LeetCodeProblems();
-		System.out.println(new BestTimetoBuyAndSellStock().maxProfit(new int[] { 7, 1, 5, 3, 6, 4 }));
+		String[] inp = { "dog", "racecar", "car" };
+		var innerLeetCodeProblems = new InnerLeetCodeProblems();
+		// System.out.println(new BestTimetoBuyAndSellStock().maxProfit(new int[] { 7,
+		// 1, 5, 3, 6, 4 }));
+		
 	}
 
 	public int[] twoSum(int[] nums, int target) {
 		int[] result = new int[2];
-
 		HashMap<Integer, Integer> mrr = new HashMap<>();
-
 		for (int i = 0; i < nums.length; i++) {
 			var complement = target - nums[i];
 			if (mrr.containsKey(complement)) {
@@ -127,7 +162,6 @@ public class LeetCodeProblems {
 			}
 			mrr.put(nums[i], i);
 		}
-
 		return result;
 	}
 

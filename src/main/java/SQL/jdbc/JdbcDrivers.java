@@ -1,15 +1,17 @@
-package jdbc;
+package SQL.jdbc;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import jdbc.MyConnection.InnerJdbcConnction;
+import SQL.jdbc.MyConnection.InnerJdbcConnction;
 
 public class JdbcDrivers {
    private MyConnection conn = new JdbcConnction();
 
-   public static void main(String[] args) throws SQLException {
+   
+
+   public static void main(String[] args) {
       /*
        * Transactions - {
        * 1 - https://www.javatpoint.com/transaction-management-in-jdbc

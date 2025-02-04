@@ -1,4 +1,4 @@
-package jdbc;
+package SQL.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 interface MyConnection {
    Connection getConnection();
@@ -61,6 +62,16 @@ public class JdbcConnction implements MyConnection {
          e.printStackTrace();
       }
       return -1;
+   }
+
+   public record InnerJdbcConnction_1() {
+   }
+   /*
+    * {stoke=100, price=9800.99, name=Iphone 16 Pro Apple (256G) - Black Steal,
+    * id=1}
+    */
+
+   public record ProdutData(String id, String name, Double price, Integer stoke) {
    }
 
    @Override
