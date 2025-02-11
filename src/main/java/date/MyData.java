@@ -28,7 +28,7 @@ public class MyData {
       System.out.println("After: " + datetimeFormated); // After: 28-01-2025 13:36:38
 
       LocalDateTime date_one = LocalDateTime.of(2025, 1, 1, 0, 0, 0);
-      LocalDateTime date_two = LocalDateTime.of(2025, 1, 1, 0, 0, 0);
+      LocalDateTime date_two = LocalDateTime.of(2025, 1, 1, 0, 0, 0);   
       System.out.println(date_one);
       System.out.println(date_two);
       /* Compare Dates */

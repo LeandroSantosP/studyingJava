@@ -9,8 +9,6 @@ import SQL.jdbc.MyConnection.InnerJdbcConnction;
 public class JdbcDrivers {
    private MyConnection conn = new JdbcConnction();
 
-   
-
    public static void main(String[] args) {
       /*
        * Transactions - {
