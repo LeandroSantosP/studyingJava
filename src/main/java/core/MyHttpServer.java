@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
+import java.util.stream.Collector;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,41 +28,42 @@ class Person {
 }
 
 public class MyHttpServer {
+
    public static void main(String[] args) throws IOException {
       HttpServer server = HttpServer.create(new InetSocketAddress("0.0.0.0", 8090), 0);
-      server.setExecutor(null);
       server.start();
+      System.out.println("Server is Running on port -> " + 8090);
       server.createContext("/", (exchange) -> {
-         try (OutputStream os = exchange.getResponseBody()) {
-            String requestBody;
-            try (InputStream inputStream = exchange.getRequestBody();
-                  BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
-               requestBody = reader.lines()
-                     .collect(Collectors.joining("\n"));
-            }
-            switch (exchange.getRequestMethod().toString()) {
-               case "GET":
-                  os.write(handleGet(exchange, requestBody));
-                  break;
-               default:
-                  break;
-            }
-            os.close();
+         String requestBody;
+         try (InputStream inputStream = exchange.getRequestBody();
+               BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+            requestBody = reader.lines().collect(Collectors.joining("\n"));
+
+            reader.close();
+            inputStream.close();
+         }
+         switch (exchange.getRequestMethod().toString()) {
+            case "GET":
+               handleGet(exchange, requestBody);
+               break;
+            default:
+               exchange.sendResponseHeaders(405, -1);
+               break;
          }
       });
    }
 
-   static byte[] handleGet(HttpExchange exchange, String requestBody) throws IOException {
-      switch (exchange.getRequestURI().toString()) {
-         case "/":
+   static void handleGet(HttpExchange exchange, String requestBody) throws IOException {
+      String path = exchange.getRequestURI().getPath();
+      try (OutputStream os = exchange.getResponseBody()) {
+         if (path.equals("/")) {
             ObjectMapper mapper = new ObjectMapper();
             Person person = mapper.readValue(requestBody, Person.class);
-            System.out.println("Request body: " + person.getName());
             // send back the body
             exchange.sendResponseHeaders(200, requestBody.length());
-            return requestBody.getBytes();
-         default:
-            return null;
+            os.write(requestBody.getBytes());
+            os.close();
+         }
       }
    }
 }
